@@ -27,7 +27,7 @@ DEBUG = True
 SECURE_SSL_REDIRECT = not DEBUG
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rate-my-bandeco.onrender.com', 'localhost', '127.0.0.1']
 
 AUTH_USER_MODEL = 'core.User'
 
