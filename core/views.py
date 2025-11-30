@@ -48,7 +48,7 @@ def cadastro_view(request):
                 mensagem,
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
-                fail_silently=False,
+                fail_silently=True,
             )
             
             return render(request, 'core/cadastro_confirmacao.html', {
