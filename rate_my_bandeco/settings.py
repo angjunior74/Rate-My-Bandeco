@@ -129,5 +129,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'ratemybandeco@gmail.com'  
-EMAIL_HOST_PASSWORD = 'mpxu lahc djht vyxc'   
+EMAIL_HOST_PASSWORD = 'mpxulahcdjhtvyxc'   
 DEFAULT_FROM_EMAIL = 'ratemybandeco@gmail.com'
