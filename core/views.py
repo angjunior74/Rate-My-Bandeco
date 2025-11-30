@@ -22,7 +22,7 @@ def cadastro_view(request):
         form = CadastroForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_active = False  # Desativa até confirmar email
+            user.is_active = True  # Desativa até confirmar email
             user.token_confirmacao = str(uuid.uuid4())
             user.save()
             
