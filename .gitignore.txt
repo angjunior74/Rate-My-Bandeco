@@ -1,0 +1,14 @@
+# Ambiente Virtual
+venv/
+env/
+.env
+
+# Banco de Dados (SQLite não sobe!)
+db.sqlite3
+
+# Arquivos compilados do Python
+__pycache__/
+*.py[cod]
+
+# Arquivos estáticos coletados (gerados no deploy)
+staticfiles/

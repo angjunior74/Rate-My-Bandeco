@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro de Cardápio</title>
+</head>
+<body>
+    <h1>Cadastrar Novo Cardápio para {{ restaurante.nome }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        Data: <input type="date" name="data" required><br>
+        Tipo de Refeição: 
+        <select name="tipo_refeicao" required>
+            <option value="Almoço">Almoço</option>
+            <option value="Jantar">Jantar</option>
+        </select><br>
+        Prato Principal: <input type="text" name="prato_principal" required><br>
+        Opção Vegetariana: <input type="text" name="opcao_vegetariana"><br>
+        Guarnição: <input type="text" name="guarnicao" required><br>
+        Saladas: <input type="text" name="saladas"><br>
+        Sobremesa: <input type="text" name="sobremesa"><br>
+        <button type="submit">Cadastrar Cardápio</button>
+    </form>
+    <a href="{% url 'dashboard_restaurante' restaurante.id %}">Voltar</a>
+</body>
+</html>

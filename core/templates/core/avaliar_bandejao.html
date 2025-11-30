@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliar Bandejão - {{ restaurante.nome }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f7;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .stars-container {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .star-input {
+            display: none;
+        }
+
+        .star-label {
+            font-size: 32px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            opacity: 0.4;
+        }
+
+        .star-label:hover,
+        .star-input:checked ~ .star-label {
+            opacity: 1;
+        }
+
+        .star-label:hover {
+            transform: scale(1.2);
+        }
+
+        .star-input:checked ~ .star-label {
+            color: #667eea;
+        }
+
+        .stars-flex {
+            display: flex;
+            gap: 8px;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+
+        .stars-flex input[type="radio"]:checked ~ label {
+            color: #ffc107;
+        }
+
+        .select-field {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .select-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .textarea-field {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+            transition: all 0.3s ease;
+        }
+
+        .textarea-field:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .textarea-field::placeholder {
+            color: #bbb;
+        }
+
+        .info-box {
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            padding: 12px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .submit-btn {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .cancel-btn {
+            flex: 1;
+            padding: 12px;
+            background: white;
+            color: #667eea;
+            border: 1px solid #667eea;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cancel-btn:hover {
+            background: #f9f9f9;
+            border-color: #764ba2;
+            color: #764ba2;
+        }
+
+        .rating-display {
+            font-size: 18px;
+            color: #667eea;
+            font-weight: 600;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .star-label {
+                font-size: 28px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-icon">⭐</div>
+            <h1>Avaliar Bandejão</h1>
+            <p>{{ restaurante.nome }}</p>
+        </div>
+
+        <div class="info-box">
+            💡 Sua avaliação ajuda outros usuários a fazer boas escolhas. Seja honesto e construtivo!
+        </div>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Avaliação em Estrelas</label>
+                <div class="stars-flex">
+                    {% for value in "12345" %}
+                        <input 
+                            type="radio" 
+                            id="star{{ value }}" 
+                            name="estrelas" 
+                            value="{{ value }}"
+                            required
+                        >
+                        <label for="star{{ value }}" class="star-label">⭐</label>
+                    {% endfor %}
+                </div>
+                <div class="rating-display" id="rating-display">Selecione uma avaliação</div>
+            </div>
+
+            <div class="form-group">
+                <label for="comentario">Comentário</label>
+                <textarea 
+                    id="comentario"
+                    name="comentario" 
+                    placeholder="Compartilhe sua experiência... (opcional)"
+                    class="textarea-field"
+                ></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">✓ Enviar Avaliação</button>
+                <a href="{% url 'cardapio' restaurante.id %}" class="cancel-btn">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const stars = document.querySelectorAll('input[name="estrelas"]');
+        const ratingDisplay = document.getElementById('rating-display');
+        const starLabels = ['', '⭐', '⭐⭐', '⭐⭐⭐', '⭐⭐⭐⭐', '⭐⭐⭐⭐⭐'];
+
+        stars.forEach((star, index) => {
+            star.addEventListener('change', () => {
+                const value = star.value;
+                ratingDisplay.textContent = starLabels[value];
+                ratingDisplay.style.color = '#ffc107';
+            });
+        });
+    </script>
+</body>
+</html>

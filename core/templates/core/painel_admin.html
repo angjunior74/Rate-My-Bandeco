@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Painel Administrativo - Rate My Bandeco</title>
+</head>
+<body>
+    <h1>Painel Administrativo</h1>
+    <a href="{% url 'moderar_comentarios' %}">
+        <button>Moderar Comentários</button>
+    </a>
+    <div>
+        {% for restaurante in restaurantes %}
+            <div style="border:1px solid #ccc; padding:16px; margin-bottom:10px;">
+                <strong>{{ restaurante.nome }}</strong><br>
+                {{ restaurante.unidade }}<br>
+                <b>Capacidade:</b> {{ restaurante.capacidade_refeicoes }} refeições/dia<br>
+                <a href="{% url 'dashboard_restaurante' restaurante.id %}">
+                    <button>Mostrar Restaurante</button>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'logout' %}">Sair</a>
+</body>
+</html>

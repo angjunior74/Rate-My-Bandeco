@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - {{ restaurante.nome }}</title>
+</head>
+<body>
+    <h1>Dashboard do Restaurante {{ restaurante.nome }}</h1>
+    <div>
+        <span>Média Hoje: {{ media_hoje }}/5</span> |
+        <span>Média Semanal: {{ media_semana }}/5</span> |
+        <span>Avaliações Hoje: {{ total_hoje }}</span> |
+        <span>Avaliações na Semana: {{ total_semana }}</span>
+    </div>
+    <h2>Cardápio Atual</h2>
+    {% if cardapio %}
+        <p><strong>Prato Principal:</strong> {{ cardapio.prato_principal }}</p>
+        <p><strong>Opção Vegetariana:</strong> {{ cardapio.opcao_vegetariana }}</p>
+        <p><strong>Guarnição:</strong> {{ cardapio.guarnicao }}</p>
+        <p><strong>Saladas:</strong> {{ cardapio.saladas }}</p>
+        <p><strong>Sobremesa:</strong> {{ cardapio.sobremesa }}</p>
+    {% else %}
+        <p>Não há cardápio cadastrado.</p>
+    {% endif %}
+
+    <a href="{% url 'novo_cardapio' restaurante.id %}">
+        <button>Cadastrar Novo Cardápio</button>
+    </a>
+    <a href="{% url 'painel_admin' %}">Voltar</a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moderação de Comentários</title>
+</head>
+<body>
+    <h1>Moderação de Comentários</h1>
+    {% for denuncia in denuncias %}
+        <div style="border:1px solid #fcc; padding:16px; margin-bottom:10px;">
+            <strong>{{ denuncia.avaliacao.usuario.username }}</strong> ({{ denuncia.avaliacao.curso }})<br>
+            Comentário: {{ denuncia.avaliacao.comentario }}<br>
+            Motivo: {{ denuncia.get_motivo_display }}<br>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="denuncia_id" value="{{ denuncia.id }}">
+                <button type="submit" name="acao" value="excluir">Procedente (Excluir)</button>
+                <button type="submit" name="acao" value="manter">Improcedente (Manter)</button>
+            </form>
+        </div>
+        <div style="border:1px solid #fcc; padding:16px; margin-bottom:10px;">
+        <strong>{{ denuncia.avaliacao.usuario.username }}</strong> ({{ denuncia.avaliacao.curso }})<br>
+        Comentário denunciado: <b>"{{ denuncia.avaliacao.comentario }}"</b><br>
+        Motivo da denúncia: {{ denuncia.get_motivo_display }}<br>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="denuncia_id" value="{{ denuncia.id }}">
+            <button type="submit" name="acao" value="excluir">Procedente (Excluir)</button>
+            <button type="submit" name="acao" value="manter">Improcedente (Manter)</button>
+        </form>
+    </div>
+
+    {% empty %}
+        <p>Não há denúncias pendentes.</p>
+    {% endfor %}
+    <a href="{% url 'painel_admin' %}">Voltar</a>
+</body>
+</html>
