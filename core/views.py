@@ -44,7 +44,7 @@ def cadastro_view(request):
             """
             
           
-           print("FROM DJANGO:", repr(settings.DEFAULT_FROM_EMAIL))
+            print("FROM DJANGO:", repr(settings.DEFAULT_FROM_EMAIL))
 
             send_mail(
                 assunto,
