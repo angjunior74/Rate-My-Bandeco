@@ -43,7 +43,7 @@ def cadastro_view(request):
             Equipe Rate My Bandeco
             """
             
-           from django.conf import settings
+          
            print("FROM DJANGO:", repr(settings.DEFAULT_FROM_EMAIL))
 
             send_mail(
