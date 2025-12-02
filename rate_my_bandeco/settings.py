@@ -133,6 +133,6 @@ EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"  # usar API, não SMTP
 
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 
-DEFAULT_FROM_EMAIL = "alexmasteralfa@gmail.com"  # exatamente o e-mail verificado
+DEFAULT_FROM_EMAIL = "alexmasteralfa@gmail.com"
 
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
