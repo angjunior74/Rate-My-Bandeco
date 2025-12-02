@@ -43,6 +43,8 @@ def cadastro_view(request):
             Equipe Rate My Bandeco
             """
             
+            print("FROM DJANGO:", settings.DEFAULT_FROM_EMAIL)
+
             send_mail(
                 assunto,
                 mensagem,
